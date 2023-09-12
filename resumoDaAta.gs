@@ -1,5 +1,13 @@
 function resumoDaAta() {
+
+  // Pegar a $planilha
+  var planilha = SpreadsheetApp.getActiveSpreadsheet();
   
+  // Pegar a $aba específica das respostas
+  var aba = planilha.getSheetByName('Form Responses 1');
+  // Log de teste:
+  Logger.log(aba.getName())
+
   // Resumo da Ata do Grupo QuarenteNA
   // Formato da Reunião: linha W
   // Data da Reunião: linha B
