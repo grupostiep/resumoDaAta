@@ -12,6 +12,13 @@ function resumoDaAta() {
   // Pegar a $coluna
   var coluna = 'D';
 
+  // Pegar as coordenadas da $celula
+  var celula = coluna + linha;
+
+  // Exemplo de Retorno de Valores das células ()
+  var valor = aba.getRange(celula).getValue();
+  Logger.log(valor)
+  
   // Resumo da Ata do Grupo QuarenteNA
   // Formato da Reunião: linha W
   // Data da Reunião: linha B
