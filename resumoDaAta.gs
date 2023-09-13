@@ -1,6 +1,6 @@
 function enviarMensagemTelegram(mensagem) {
-  var token = "TOKEN"; // Substituir pelo  token de bot
-  var chatId = "CHAT_ID"; // Substituir pelo seu chat ID
+  var token = "Token"; // Substituir pelo Token de bot
+  var chatId = "ChatID"; // Substituir pelo Chat ID
   
   var apiUrl = "https://api.telegram.org/bot" + token + "/sendMessage";
   
