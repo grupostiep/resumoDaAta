@@ -1,3 +1,22 @@
+function enviarMensagemTelegram(mensagem) {
+  var token = "TOKEN"; // Substituir pelo  token de bot
+  var chatId = "CHAT_ID"; // Substituir pelo seu chat ID
+  
+  var apiUrl = "https://api.telegram.org/bot" + token + "/sendMessage";
+  
+  var payload = {
+    chat_id: chatId,
+    text: mensagem,
+  };
+  
+  var options = {
+    method: "post",
+    payload: payload,
+  };
+  
+  UrlFetchApp.fetch(apiUrl, options);
+}
+
 function formatarData(data) {
   var diasDaSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
   
@@ -76,5 +95,9 @@ function resumoDaAta() {
   if (valores['M'] !== "") {
   mensagem += "Observações: " + valores['M'];
   }
-    Logger.log(mensagem)
+  // Exibir log da mensagem montada
+  Logger.log(mensagem)
+  
+  // Enviar a mensagem via Telegram
+  enviarMensagemTelegram(mensagem);
 }
