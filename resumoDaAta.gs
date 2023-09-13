@@ -1,3 +1,14 @@
+function formatarData(data) {
+  var diasDaSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+  
+  var diaSemana = diasDaSemana[data.getDay()];
+  var dia = ("0" + data.getDate()).slice(-2);
+  var mes = ("0" + (data.getMonth() + 1)).slice(-2);
+  var ano = data.getFullYear();
+  
+  return diaSemana + " " + dia + "/" + mes + "/" + ano;
+}
+
 function resumoDaAta() {
   // Pegar a planilha
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
@@ -19,11 +30,15 @@ function resumoDaAta() {
     var valor = aba.getRange(coluna + ultimaLinha).getValue();
     valores[coluna] = valor;
   });
+
+  // Converter a data da reunião para o formato desejado
+  var dataReuniao = new Date(valores['B']);
+  var dataFormatada = formatarData(dataReuniao);
   
   // Mensagem de resumo
   var mensagem = "Resumo da Ata do Grupo QuarenteNA\n" +
                  "Formato da Reunião: " + valores['W'] + "\n" +
-                 "Data da Reunião: " + valores['B'] + "\n" +
+                 "Data da Reunião: " + dataFormatada + "\n" +
                  "Horário da Reunião: " + valores['C'] + "\n" +
                  "Coordenador(a): " + valores['O'] + "\n" +
                  "Secretário(a): " + valores['N'] + "\n" +
