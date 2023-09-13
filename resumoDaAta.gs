@@ -20,32 +20,39 @@ function resumoDaAta() {
   var ultimaLinha = aba.getLastRow();
   
   // Definir as colunas de interesse
-  var colunas = ['B', 'C', 'O', 'N', 'D', 'E', 'F', 'G', 'I', 'H', 'J', 'W'];
+  var colunas = ['B', 'C', 'O', 'N', 'D', 'E', 'F', 'G', 'I', 'H', 'J', 'M', 'P', 'Q', 'W', 'Y'];
   
-  // Inicializar um objeto para armazenar os valores
+  // Armazenar os valores
   var valores = {};
   
-  // Iterar pelas colunas e pegar os valores
+  // Pegar os valores pelas colunas
   colunas.forEach(function(coluna) {
     var valor = aba.getRange(coluna + ultimaLinha).getValue();
     valores[coluna] = valor;
   });
 
-  // Converter a data da reunião para o formato desejado
+  // Converter a data da reunião para o formato BR
   var dataReuniao = new Date(valores['B']);
   var dataFormatada = formatarData(dataReuniao);
 
+  // Converter a data da atualização da sétima para o formato BR
+  var dataAtualizacao = new Date(valores['Q']);
+  var atualizacaoFormatada = formatarData(dataAtualizacao);
+
   
-  // Inicializar a mensagem de resumo
+  // Montar a mensagem de resumo
   var mensagem = "Resumo da Ata do Grupo QuarenteNA\n";
   
-  // Adicionar as linhas da mensagem, verificando se os valores são strings vazias
-  mensagem += "Formato da Reunião: " + (valores['W'] || "0") + "\n";
+  // Linhas das mensagens necessárias
+  mensagem += "Formato da Reunião: " + valores['W'] + "\n";
   mensagem += "Data da Reunião: " + dataFormatada + "\n";
+  mensagem += "Horário da Reunião: " + valores['C'] + "\n";
   mensagem += "Coordenador(a): " + valores['O'] + "\n";
   mensagem += "Secretário(a): " + valores['N'] + "\n";
   mensagem += "Presenças: " + valores['D'] + "\n";
   mensagem += "Partilhas: " + valores['E'] + "\n";
+  mensagem += "7ª Tradição: R$ " + valores['P'] + "\n";
+  mensagem += "Atualizada em: " + atualizacaoFormatada + "\n";
   
   // Adicionar as linhas apenas se os valores não forem strings vazias
   if (valores['F'] !== "") {
@@ -61,7 +68,13 @@ function resumoDaAta() {
     mensagem += "Conquista(s): " + valores['H'] + "\n";
   }
   if (valores['J'] !== "") {
-  mensagem += "Nome(s) da(s) Conquista(s): " + valores['J'];
+  mensagem += "Nome(s) da(s) Conquista(s): " + valores['J'] + "\n";
+  }
+  if (valores['Y'] !== "") {
+  mensagem += "Eleição de Encargo: " + valores['Y'] + "\n";
+  }
+  if (valores['M'] !== "") {
+  mensagem += "Observações: " + valores['M'];
   }
     Logger.log(mensagem)
 }
