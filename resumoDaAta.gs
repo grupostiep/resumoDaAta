@@ -9,6 +9,7 @@ function formatarData(data) {
   return diaSemana + " " + dia + "/" + mes + "/" + ano;
 }
 
+
 function resumoDaAta() {
   // Pegar a planilha
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
@@ -25,31 +26,37 @@ function resumoDaAta() {
   // Inicializar um objeto para armazenar os valores
   var valores = {};
   
-  // Iterar pelas colunas e pegar os valores
+  // Pegar os valores nas colunas
   colunas.forEach(function(coluna) {
     var valor = aba.getRange(coluna + ultimaLinha).getValue();
     valores[coluna] = valor;
   });
 
-  // Converter a data da reunião para o formato desejado
+  // Converter a data da reunião para o formato BR
   var dataReuniao = new Date(valores['B']);
   var dataFormatada = formatarData(dataReuniao);
+
+  // Verificar se alguns valores são null e definir como "0"
+  var valorVisita = valores['F'] === null ? "0" : valores['F'];
+  var valorIngresso = valores['G'] === null ? "0" : valores['G'];
+  var valorNomeIngressante = valores['I'] === null ? "0" : valores['I'];
+  var valorConquista = valores['H'] === null ? "0" : valores['H'];
+  var valorNomeConquista = valores['J'] === null ? "0" : valores['J'];
   
   // Mensagem de resumo
   var mensagem = "Resumo da Ata do Grupo QuarenteNA\n" +
                  "Formato da Reunião: " + valores['W'] + "\n" +
                  "Data da Reunião: " + dataFormatada + "\n" +
-                 "Horário da Reunião: " + valores['C'] + "\n" +
                  "Coordenador(a): " + valores['O'] + "\n" +
                  "Secretário(a): " + valores['N'] + "\n" +
                  "Presenças: " + valores['D'] + "\n" +
                  "Partilhas: " + valores['E'] + "\n" +
-                 "Visita(s): " + valores['F'] + "\n" +
-                 "Ingresso(s): " + valores['G'] + "\n" +
-                 "Nome(s) Ingressante(s): " + valores['I'] + "\n" +
-                 "Conquista(s): " + valores['H'] + "\n" +
-                 "Nome(s) da(s) Conquista(s): " + valores['J']; 
-  
+                 "Visita(s): " + valorVisita + "\n" + // Exibe "0" se for null
+                 "Ingresso(s): " + valorIngresso + "\n" + // Exibe "0" se for null
+                 "Nome(s) Ingressante(s): " + valorNomeIngressante + "\n" + // Exibe "0" se for null
+                 "Conquista(s): " + valorConquista + "\n" + // Exibe "0" se for null
+                 "Nome(s) da(s) Conquista(s): " + valorNomeConquista; // Exibe "0" se for null;
+
   Logger.log(mensagem)
 
 }
