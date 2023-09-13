@@ -14,27 +14,27 @@ function resumoDaAta() {
   // Inicializar um objeto para armazenar os valores
   var valores = {};
   
-  // Pegar os valores das colunas
+  // Iterar pelas colunas e pegar os valores
   colunas.forEach(function(coluna) {
     var valor = aba.getRange(coluna + ultimaLinha).getValue();
     valores[coluna] = valor;
   });
   
-  // Acessar as informações usando valores['B'], valores['C'], etc...
-  Logger.log(valores['D'])
-
-  // Resumo da Ata do Grupo QuarenteNA
-  // Formato da Reunião: linha W
-  // Data da Reunião: linha B
-  // Horário da Reunião: linha C
-  // Coordenador(a): linha O
-  // Secretário(a): linha N
-  // Presenças: linha D
-  // Partilhas: linha E
-  // Visita(s): linha F
-  // Ingresso(s): linha G
-  // Nome(s) Ingressante(s): linha I
-  // Conquista(s): linha H
-  // Nome(s) da(s) Conquista(s): linha J
+  // Mensagem de resumo
+  var mensagem = "Resumo da Ata do Grupo QuarenteNA\n" +
+                 "Formato da Reunião: " + valores['W'] + "\n" +
+                 "Data da Reunião: " + valores['B'] + "\n" +
+                 "Horário da Reunião: " + valores['C'] + "\n" +
+                 "Coordenador(a): " + valores['O'] + "\n" +
+                 "Secretário(a): " + valores['N'] + "\n" +
+                 "Presenças: " + valores['D'] + "\n" +
+                 "Partilhas: " + valores['E'] + "\n" +
+                 "Visita(s): " + valores['F'] + "\n" +
+                 "Ingresso(s): " + valores['G'] + "\n" +
+                 "Nome(s) Ingressante(s): " + valores['I'] + "\n" +
+                 "Conquista(s): " + valores['H'] + "\n" +
+                 "Nome(s) da(s) Conquista(s): " + valores['J']; 
   
+  Logger.log(mensagem)
+
 }
