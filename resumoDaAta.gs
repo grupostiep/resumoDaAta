@@ -9,7 +9,6 @@ function formatarData(data) {
   return diaSemana + " " + dia + "/" + mes + "/" + ano;
 }
 
-
 function resumoDaAta() {
   // Pegar a planilha
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
@@ -26,37 +25,43 @@ function resumoDaAta() {
   // Inicializar um objeto para armazenar os valores
   var valores = {};
   
-  // Pegar os valores nas colunas
+  // Iterar pelas colunas e pegar os valores
   colunas.forEach(function(coluna) {
     var valor = aba.getRange(coluna + ultimaLinha).getValue();
     valores[coluna] = valor;
   });
 
-  // Converter a data da reunião para o formato BR
+  // Converter a data da reunião para o formato desejado
   var dataReuniao = new Date(valores['B']);
   var dataFormatada = formatarData(dataReuniao);
 
-  // Verificar se alguns valores são null e definir como "0"
-  var valorVisita = valores['F'] === null ? "0" : valores['F'];
-  var valorIngresso = valores['G'] === null ? "0" : valores['G'];
-  var valorNomeIngressante = valores['I'] === null ? "0" : valores['I'];
-  var valorConquista = valores['H'] === null ? "0" : valores['H'];
-  var valorNomeConquista = valores['J'] === null ? "0" : valores['J'];
   
-  // Mensagem de resumo
-  var mensagem = "Resumo da Ata do Grupo QuarenteNA\n" +
-                 "Formato da Reunião: " + valores['W'] + "\n" +
-                 "Data da Reunião: " + dataFormatada + "\n" +
-                 "Coordenador(a): " + valores['O'] + "\n" +
-                 "Secretário(a): " + valores['N'] + "\n" +
-                 "Presenças: " + valores['D'] + "\n" +
-                 "Partilhas: " + valores['E'] + "\n" +
-                 "Visita(s): " + valorVisita + "\n" + // Exibe "0" se for null
-                 "Ingresso(s): " + valorIngresso + "\n" + // Exibe "0" se for null
-                 "Nome(s) Ingressante(s): " + valorNomeIngressante + "\n" + // Exibe "0" se for null
-                 "Conquista(s): " + valorConquista + "\n" + // Exibe "0" se for null
-                 "Nome(s) da(s) Conquista(s): " + valorNomeConquista; // Exibe "0" se for null;
-
-  Logger.log(mensagem)
-
+  // Inicializar a mensagem de resumo
+  var mensagem = "Resumo da Ata do Grupo QuarenteNA\n";
+  
+  // Adicionar as linhas da mensagem, verificando se os valores são strings vazias
+  mensagem += "Formato da Reunião: " + (valores['W'] || "0") + "\n";
+  mensagem += "Data da Reunião: " + dataFormatada + "\n";
+  mensagem += "Coordenador(a): " + valores['O'] + "\n";
+  mensagem += "Secretário(a): " + valores['N'] + "\n";
+  mensagem += "Presenças: " + valores['D'] + "\n";
+  mensagem += "Partilhas: " + valores['E'] + "\n";
+  
+  // Adicionar as linhas apenas se os valores não forem strings vazias
+  if (valores['F'] !== "") {
+    mensagem += "Visita(s): " + valores['F'] + "\n";
+  }
+  if (valores['G'] !== "") {
+    mensagem += "Ingresso(s): " + valores['G'] + "\n";
+  }
+  if (valores['I'] !== "") {
+  mensagem += "Nome(s) Ingressante(s): " + valores['I'] + "\n";
+  }
+  if (valores['H'] !== "") {
+    mensagem += "Conquista(s): " + valores['H'] + "\n";
+  }
+  if (valores['J'] !== "") {
+  mensagem += "Nome(s) da(s) Conquista(s): " + valores['J'];
+  }
+    Logger.log(mensagem)
 }
