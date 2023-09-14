@@ -39,7 +39,7 @@ function resumoDaAta() {
   var ultimaLinha = aba.getLastRow();
   
   // Definir as colunas de interesse
-  var colunas = ['B', 'C', 'O', 'N', 'D', 'E', 'F', 'G', 'I', 'H', 'J', 'M', 'P', 'Q', 'W', 'Y'];
+  var colunas = ['B', 'C', 'O', 'N', 'D', 'E', 'F', 'G', 'I', 'H', 'J', 'K', 'L', 'M', 'P', 'Q', 'W', 'Y', 'Z'];
   
   // Armazenar os valores
   var valores = {};
@@ -83,11 +83,20 @@ function resumoDaAta() {
   if (valores['I'] !== "") {
   mensagem += "Nome(s) Ingressante(s): " + valores['I'] + "\n";
   }
+  if (valores['Z'] !== "") {
+  mensagem += "Contato(s) Ingressante(s): " + valores['Z'] + "\n";
+  }
   if (valores['H'] !== "") {
     mensagem += "Conquista(s): " + valores['H'] + "\n";
   }
   if (valores['J'] !== "") {
   mensagem += "Nome(s) da(s) Conquista(s): " + valores['J'] + "\n";
+  }
+  if (valores['K'] !== "") {
+  mensagem += "Título da Temática: " + valores['K'] + "\n";
+  }
+  if (valores['L'] !== "") {
+  mensagem += "Partilhador da Temática: " + valores['L'] + "\n";
   }
   if (valores['Y'] !== "") {
   mensagem += "Eleição de Encargo: " + valores['Y'] + "\n";
