@@ -1,3 +1,39 @@
+function enviarMensagemWhatsApp(mensagem) {
+  var apiUrl = "http://url.api:8080/message/sendText/instance"; // Substituir pela URL da EvolutionAPI
+  var apiKey = "Token"; // Substituir pelo seu Token da API
+
+  var payload = {
+    number: "+5571999887766", // Substituir pelo número ou ID do grupo
+    options: {
+      delay: 1200,
+      presence: "composing",
+      linkPreview: false,
+    },
+    textMessage: {
+      text: mensagem,
+    },
+  };
+
+  var options = {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": apiKey,
+    },
+    payload: JSON.stringify(payload),
+  };
+
+  var response = UrlFetchApp.fetch(apiUrl, options);
+  var responseData = JSON.parse(response.getContentText());
+
+  // Verifica se a mensagem foi enviada com sucesso
+  if (responseData.success) {
+    Logger.log("Mensagem enviada com sucesso para o WhatsApp via API.");
+  } else {
+    Logger.log("Erro ao enviar a mensagem para o WhatsApp via API: " + responseData.error);
+  }
+}
+
 function enviarMensagemTelegram(mensagem) {
   var token = "Token"; // Substituir pelo Token de bot
   var chatId = "ChatID"; // Substituir pelo Chat ID
@@ -109,4 +145,7 @@ function resumoDaAta() {
   
   // Enviar a mensagem via Telegram
   enviarMensagemTelegram(mensagem);
+
+  // Enviar a mensagem via WhatsApp (API)
+  enviarMensagemWhatsApp(mensagem);
 }
