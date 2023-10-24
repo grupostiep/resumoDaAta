@@ -1,10 +1,11 @@
-# Resumo da Ata do Grupo QuarenteNA
+# Resumo da Ata do Grupo Graça de NA.
 
-Este é um projeto que utiliza o Google Apps Script para automatizar a geração de resumos a partir de uma planilha do Google Sheets e enviar esses resumos via Telegram.
+Este é um projeto que utiliza o Google Apps Script para automatizar a geração de resumos a partir de uma planilha do Google Sheets e enviar esses resumos via WhatsApp.
+Trata-se de um fork do projeto original do grupo QuarenteNA: https://github.com/grupoquarentena/resumoDaAta
 
 ## Como Funciona
 
-O script lê os dados da planilha 'Form Responses 1' no Google Sheets e gera um resumo com informações relevantes. Em seguida, envia esse resumo para um grupo no Telegram.
+O script lê os dados da planilha 'Respostas ao formulário 1' no Google Sheets e gera um resumo com informações relevantes. Em seguida, envia esse resumo para um grupo no WhatsApp.
 
 ## Pré-requisitos
 
@@ -12,13 +13,14 @@ Antes de executar este projeto, você precisará:
 
 - Ter uma conta no Google.
 - Ter acesso a uma planilha do Google Sheets.
-- Criar um bot no Telegram e obter um token de acesso.
+- Utilizar a EvolutionAPI para enviar via WhatsApp.
+  (https://github.com/EvolutionAPI/evolution-api)
 
 ## Configuração
 
 1. Faça uma cópia da planilha de exemplo fornecida ou crie sua própria planilha com os dados relevantes.
 
-2. No script `resumoDaAta.gs`, substitua o token de acesso do bot do Telegram e o chat ID pelo seu próprio.
+2. No script `resumoDaAta.gs`, substitua as informações da API para enviar mensagens para o WhatsApp.
 
 3. Configure um gatilho de execução para que a função `resumoDaAta` seja acionada automaticamente em intervalos específicos.
 
