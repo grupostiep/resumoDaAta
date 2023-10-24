@@ -50,13 +50,13 @@ function resumoDaAta() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
   
   // Pegar a aba específica das respostas
-  var aba = planilha.getSheetByName('Form Responses 1');
+  var aba = planilha.getSheetByName('Respostas ao formulário 1');
   
   // Pegar a última linha
   var ultimaLinha = aba.getLastRow();
   
   // Definir as colunas de interesse
-  var colunas = ['B', 'C', 'O', 'N', 'D', 'E', 'F', 'G', 'I', 'H', 'J', 'K', 'L', 'M', 'P', 'Q', 'W', 'Y', 'Z'];
+  var colunas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y'];
   
   // Armazenar os valores
   var valores = {};
@@ -68,59 +68,54 @@ function resumoDaAta() {
   });
 
   // Converter a data da reunião para o formato BR
-  var dataReuniao = new Date(valores['B']);
+  var dataReuniao = new Date(valores['A']);
   var dataFormatada = formatarData(dataReuniao);
-
-  // Converter a data da atualização da sétima para o formato BR
-  var dataAtualizacao = new Date(valores['Q']);
-  var atualizacaoFormatada = formatarData(dataAtualizacao);
 
   
   // Montar a mensagem de resumo
-  var mensagem = "Resumo da Ata do Grupo QuarenteNA\n";
+  var mensagem = "Resumo da Ata do Grupo Graça\n";
   
   // Linhas das mensagens necessárias
-  mensagem += "Formato da Reunião: " + valores['W'] + "\n";
+  mensagem += "Formato da Reunião: " + valores['C'] + "\n";
   mensagem += "Data da Reunião: " + dataFormatada + "\n";
-  mensagem += "Horário da Reunião: " + valores['C'] + "\n";
-  mensagem += "Coordenador(a): " + valores['O'] + "\n";
-  mensagem += "Secretário(a): " + valores['N'] + "\n";
-  mensagem += "Presenças: " + valores['D'] + "\n";
-  mensagem += "Partilhas: " + valores['E'] + "\n";
+  mensagem += "Coordenador(a): " + valores['F'] + "\n";
+  mensagem += "Secretário(a): " + valores['E'] + "\n";
+  mensagem += "Presenças: " + valores['G'] + "\n";
+  mensagem += "Partilhas: " + valores['H'] + "\n";
   mensagem += "7ª Tradição: R$ " + valores['P'] + "\n";
-  mensagem += "Atualizada em: " + atualizacaoFormatada + "\n";
-  
+    
   // Adicionar as linhas apenas se os valores não forem strings vazias
-  if (valores['F'] !== "") {
-    mensagem += "Visita(s): " + valores['F'] + "\n";
-  }
-  if (valores['G'] !== "") {
-    mensagem += "Ingresso(s): " + valores['G'] + "\n";
-  }
   if (valores['I'] !== "") {
-  mensagem += "Nome(s) Ingressante(s): " + valores['I'] + "\n";
+    mensagem += "Visita(s): " + valores['I'] + "\n";
   }
-  if (valores['Z'] !== "") {
-  mensagem += "Contato(s) Ingressante(s): " + valores['Z'] + "\n";
+  if (valores['J'] !== "") {
+    mensagem += "Ingresso(s): " + valores['J'] + "\n";
+  }
+  if (valores['K'] !== "") {
+  mensagem += "Nome(s) Ingressante(s): " + valores['K'] + "\n";
+  }
+  if (valores['L'] !== "") {
+  mensagem += "Contato(s) Ingressante(s): " + valores['L'] + "\n";
   }
   if (valores['H'] !== "") {
     mensagem += "Conquista(s): " + valores['H'] + "\n";
   }
-  if (valores['J'] !== "") {
-  mensagem += "Nome(s) da(s) Conquista(s): " + valores['J'] + "\n";
+  if (valores['N'] !== "") {
+  mensagem += "Nome(s) da(s) Conquista(s): " + valores['N'] + "\n";
   }
-  if (valores['K'] !== "") {
-  mensagem += "Título da Temática: " + valores['K'] + "\n";
+  if (valores['V'] !== "") {
+  mensagem += "Título da Temática: " + valores['V'] + "\n";
   }
-  if (valores['L'] !== "") {
-  mensagem += "Partilhador da Temática: " + valores['L'] + "\n";
+  if (valores['W'] !== "") {
+  mensagem += "Partilhador da Temática: " + valores['W'] + "\n";
+  }
+  if (valores['U'] !== "") {
+  mensagem += "Eleição de Encargo: " + valores['U'] + "\n";
   }
   if (valores['Y'] !== "") {
-  mensagem += "Eleição de Encargo: " + valores['Y'] + "\n";
+  mensagem += "Observações: " + valores['Y'];
   }
-  if (valores['M'] !== "") {
-  mensagem += "Observações: " + valores['M'];
-  }
+
   // Exibir log da mensagem montada
   Logger.log(mensagem)
   
