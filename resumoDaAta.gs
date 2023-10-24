@@ -34,25 +34,6 @@ function enviarMensagemWhatsApp(mensagem) {
   }
 }
 
-function enviarMensagemTelegram(mensagem) {
-  var token = "Token"; // Substituir pelo Token de bot
-  var chatId = "ChatID"; // Substituir pelo Chat ID
-  
-  var apiUrl = "https://api.telegram.org/bot" + token + "/sendMessage";
-  
-  var payload = {
-    chat_id: chatId,
-    text: mensagem,
-  };
-  
-  var options = {
-    method: "post",
-    payload: payload,
-  };
-  
-  UrlFetchApp.fetch(apiUrl, options);
-}
-
 function formatarData(data) {
   var diasDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
   
