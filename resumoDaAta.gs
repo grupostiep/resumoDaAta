@@ -124,9 +124,6 @@ function resumoDaAta() {
   // Exibir log da mensagem montada
   Logger.log(mensagem)
   
-  // Enviar a mensagem via Telegram
-  enviarMensagemTelegram(mensagem);
-
   // Enviar a mensagem via WhatsApp (API)
   enviarMensagemWhatsApp(mensagem);
 }
