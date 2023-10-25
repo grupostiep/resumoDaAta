@@ -56,7 +56,7 @@ function resumoDaAta() {
   var ultimaLinha = aba.getLastRow();
   
   // Definir as colunas de interesse
-  var colunas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y'];
+  var colunas = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   
   // Armazenar os valores
   var valores = {};
@@ -78,6 +78,9 @@ function resumoDaAta() {
   // Linhas das mensagens necessárias
   mensagem += "*Formato da Reunião*: " + valores['C'] + "\n";
   mensagem += "*Data da Reunião*: " + dataFormatada + "\n";
+  mensagem += "*Tipo de Reunião*: " + valores['D'] + "\n";
+  mensagem += "*Dia da Reunião*: " + valores['B'] + "\n";
+  mensagem += "*Horário da Reunião*: " + valores['Z'] + "\n";
   mensagem += "*Secretário(a)*: " + valores['E'] + "\n";
   mensagem += "*Coordenador(a)*: " + valores['F'] + "\n";
   mensagem += "*Presenças*: " + valores['G'] + "\n";
@@ -88,10 +91,10 @@ function resumoDaAta() {
 
   // Adicionar as linhas apenas se os valores não forem strings vazias
   if (valores['R'] !== "") {
-    mensagem += "*Total de despesas*: R$ " + valores['R'] + "\n";
+    mensagem += "*Total de Despesas*: R$ " + valores['R'] + "\n";
   }
   if (valores['S'] !== "") {
-    mensagem += "*Descrição das despesas*: " + valores['S'] + "\n";
+    mensagem += "*Descrição das Despesas*: " + valores['S'] + "\n";
   }
 
   if (valores['I'] !== "") {
@@ -106,12 +109,15 @@ function resumoDaAta() {
   if (valores['L'] !== "") {
   mensagem += "*Contato(s) do(s) Ingressante(s)*: " + valores['L'] + "\n";
   }
-
-  if (valores['H'] !== "") {
-    mensagem += "*Conquista(s)*: " + valores['H'] + "\n";
+  if (valores['M'] !== "") {
+  mensagem += "*Visita Soube Através*: " + valores['M'] + "\n";
   }
+
   if (valores['N'] !== "") {
-  mensagem += "*Nome(s) da(s) Conquista(s)*: " + valores['N'] + "\n";
+    mensagem += "*Conquista(s)*: " + valores['N'] + "\n";
+  }
+  if (valores['O'] !== "") {
+  mensagem += "*Nome(s) da(s) Conquista(s)*: " + valores['O'] + "\n";
   }
 
   if (valores['V'] !== "") {
@@ -126,7 +132,11 @@ function resumoDaAta() {
   }
 
   if (valores['Y'] !== "") {
-  mensagem += "*Observações*: " + valores['Y'];
+  mensagem += "*Observações*: " + valores['Y'] + "\n";
+  }
+
+  if (valores['X'] !== "") {
+  mensagem += "*Informações Adicionais*: " + valores['X'];
   }
 
   // Exibir log da mensagem montada
