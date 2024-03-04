@@ -50,7 +50,7 @@ function resumoDaAta() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
   
   // Pegar a aba específica das respostas
-  var aba = planilha.getSheetByName('Respostas ao formulário 1');
+  var aba = planilha.getSheetByName('Atas');
   
   // Pegar a última linha
   var ultimaLinha = aba.getLastRow();
